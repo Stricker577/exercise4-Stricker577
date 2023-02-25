@@ -17,3 +17,5 @@ const stories = [
 ];
 
 exports.find = () => stories;
+
+exports.findById = id => stories.find(story=>story.id === id);
