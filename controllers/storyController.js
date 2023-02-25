@@ -22,16 +22,29 @@ exports.show = (req, res)=>{
     let story = model.findById(id);
     if (story){
         res.render('./story/show', { story });
+    } else {
+        res.status(404).send('Cannot find story with id ' + id);
     }
-    res.status(404).send('Cannot find story with id ' + id);
 };
 
 exports.edit = (req, res)=>{
-    res.send('send the edit form');
+    let id = req.params.id;
+    let story = model.findById(id);
+    if (story){
+        res.render('./story/edit', { story });
+    } else {
+        res.status(404).send('Cannot find story with id ' + id);
+    }
 };
 
 exports.update = (req, res)=>{
-    res.send('update story with id' + req.params.id);
+    let story = req.body;
+    let id = req.params.id;
+    if (model.updateById(id, story)) {
+        res.redirect('/stories/' + id);
+    } else {
+        res.status(404).send('Cannot find story with id ' + id);
+    }
 };
 
 exports.delete = (req, res)=>{

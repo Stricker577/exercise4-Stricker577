@@ -26,3 +26,14 @@ exports.save = function (story) {
     story.createdAt = DateTime.now().toLocaleString(DateTime.DATETIME_SHORT);
     stories.push(story);
 };
+
+exports.updateById = function(id, newStory) {
+    let story = stories.find(story=>story.id === id);
+    if(story) {
+        story.title = newStory.title;
+        story.content = newStory.content;
+        return true;
+    } else {
+        return false;
+    }
+}
