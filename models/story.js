@@ -1,5 +1,4 @@
 const { DateTime } = require("luxon");
-
 const stories = [
 {
     id: '1',
@@ -16,3 +15,5 @@ const stories = [
     createdAt: DateTime.local(2021, 2, 12, 18, 0).toLocaleString(DateTime.DATETIME_SHORT)
 }
 ];
+
+exports.find = () => stories;
