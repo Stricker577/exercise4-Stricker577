@@ -7,11 +7,14 @@ exports.index = (req, res)=>{
 }
 
 exports.new = (req, res)=>{
-    res.send('send the new form');
+    res.render('./story/new');
 };
 
 exports.create = (req, res)=>{
-    res.send('Created a new Story');
+    //res.send('Created a new Story');
+    let story = req.body;
+    model.save(story);
+    res.redirect('/stories');
 };
 
 exports.show = (req, res)=>{

@@ -1,4 +1,5 @@
 const { DateTime } = require("luxon");
+const { v4: uuidv4 } = require('uuid');
 const stories = [
 {
     id: '1',
@@ -19,3 +20,9 @@ const stories = [
 exports.find = () => stories;
 
 exports.findById = id => stories.find(story=>story.id === id);
+
+exports.save = function (story) {
+    story.id = uuidv4();
+    story.createdAt = DateTime.now().toLocaleString(DateTime.DATETIME_SHORT);
+    stories.push(story);
+};
